@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>
+            housekeepingapp
+        </title>
+        <link rel="stylesheet" type="text/css" href="% static 'money/style.css' %}">
+    </head>
+    <body>
+        <h1>
+            {{year}}年{{month}}月
+        </h1>
+        <form action="/money/" method="post">
+            {% csrf_token %}
+            {{form.as_table}}
+            <input type="submit" value="送信">
+        </form>
+        <table>
+            <tr>
+                <th>
+                    日付
+                </th>
+                <th>
+                    用途
+                </th>
+                <th>
+                    金額
+                </th>
+            </tr>
+            {% for num in money %}
+            <tr>
+                <td>
+                    {{num.use_date}}
+                </td>
+                <td>
+                    {{num.detail}}
+                </td>
+                <td>
+                    {{num.cost}}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
